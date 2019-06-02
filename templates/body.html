@@ -1,0 +1,77 @@
+<div class="container">
+		<div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-3" style="font-size: 2.2rem;font-weight: bold;">Item</div>
+				<div class="col-sm-3"></div>
+				<div class="col-sm-3"></div>
+			</div>
+			<hr>
+		{% for item in items %}
+		<fieldset class="form-group">
+			<div class="row">
+				<div class="col-sm-3">
+				</div>
+				<div class="col-sm-3" style="font-size: 2rem;">
+					{% if item_id == item.id %}
+					<input class="form-control form-control-lg" type="input" name='editedItem' value={{ item.item }} form="saveForm">
+					{% else %}
+					{{ item.item }}
+					{% if item.done %} 
+					<span  >
+						<img src="static\mark.png" style="width: 1.5rem; height: 1.5rem;"> 
+					</span>
+					{% endif %}
+					{% endif %}
+				</div>
+				<div class="col-sm-3">
+					<form action="remove/{{ item.id }}" method="POST" style="display:inline-block;">
+						{{ form.remove(class="btn btn-outline-info") }}
+					</form>
+					{% if item_id == item.id %}
+					<form action="/save/{{ item.id }}" id="saveForm" method="POST" style="display:inline-block;">
+						{{ form.save(class="btn btn-outline-info") }}
+					</form>
+					{% else %}
+					<form action="edit/{{ item.id }}" method="POST" style="display:inline-block;">
+						{{ form.edit(class="btn btn-outline-info") }}
+					</form>
+					{% endif %}
+					{% if item.done %}
+					<form action="notDone/{{ item.id }}" method="POST" style="display:inline-block;">
+						{{ form.notDone(class="btn btn-outline-info") }}
+					</form>
+					{% else %}
+					<form action="done/{{ item.id }}" method="POST" style="display:inline-block;">
+						{{ form.done(class="btn btn-outline-info") }}
+					</form>
+					{% endif %}
+				</div>
+				<div class="col-sm-3">	
+				</div>
+			</div>
+			<br>
+		{% endfor %}
+		</fieldset>
+	<form action="{{ url_for('Home') }}" method="POST">
+	{{ form.hidden_tag() }}
+	<div class="border-top pt-3">
+		<div class="row">
+				<div class="col-sm-3">
+				</div>
+				<div class="col-sm-3">
+					{{ form.item(class="form-control form-control-lg",value="") }}
+
+				    <div style="color: red; padding-top: .5rem;padding-left: .6rem;">
+				    	{% for error in form.item.errors %}
+				    		<span>{{ error }}</span>
+				    	{% endfor %}
+				    </div>
+				</div>
+				<div class="col-sm-3">
+					{{ form.submit(class="btn btn-outline-info") }}
+				</div>
+				<div class="col-sm-3">
+				</div>
+    </div>
+	</form>
+</div>
