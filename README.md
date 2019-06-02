@@ -1,6 +1,6 @@
 # Flask-todo
 
-This is an app to store todo list developed using flask,html,bootstrap
+This is an app to store todo list developed using python,flask,html,bootstrap
 
 In this app you can
 * add a todo item
