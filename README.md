@@ -8,6 +8,7 @@ In this app you can
 * edit and save a todo item
 * mark as done a todo item
 
+### screenshot of the main page of the app
 ![togo2](https://user-images.githubusercontent.com/41481377/58758611-32998f80-853b-11e9-94ce-7c41032180f1.PNG)
 
 ## setting up the project environment
